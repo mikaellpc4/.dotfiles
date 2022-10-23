@@ -6,4 +6,4 @@ nnoremap("<C-s>", "<cmd>:w<CR>")
 inoremap("<C-s>", "<cmd>:w<CR>")
 
 -- Format text
-nnoremap("<leader>lf", ":lua vim.lsp.buf.format()<CR>")
+nnoremap("<leader>fa", ":lua vim.lsp.buf.format()<CR>")
