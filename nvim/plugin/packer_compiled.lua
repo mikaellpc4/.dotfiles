@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["coc.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gitsigns.nvim",
@@ -117,7 +122,7 @@ _G.packer_plugins = {
   harpoon = {
     loaded = true,
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\harpoon",
-    url = "https://github.com/ThePrimeagen/harpoon"
+    url = "https://github.com/mikaellpc4/harpoon"
   },
   ["live-server"] = {
     loaded = true,
@@ -143,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason-null-ls.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason-null-ls.nvim",
+    url = "https://github.com/jayp0521/mason-null-ls.nvim"
   },
   ["mason.nvim"] = {
     loaded = true,
@@ -173,11 +183,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-tree.lua",
-    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -219,15 +224,15 @@ _G.packer_plugins = {
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["presence.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\presence.nvim",
-    url = "https://github.com/andweeb/presence.nvim"
-  },
   ripgrep = {
     loaded = true,
     path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\ripgrep",
     url = "https://github.com/BurntSushi/ripgrep"
+  },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\mikae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

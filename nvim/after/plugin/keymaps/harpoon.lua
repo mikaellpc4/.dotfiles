@@ -1,11 +1,12 @@
-local nnoremap = require("keymap").nnoremap
+local nnoremap = require('keymap').nnoremap
 
-local silent = { silent = true }
+nnoremap('<leader>a', '<cmd>:lua require(\'harpoon.mark\').add_file()<CR>')
+-- Not working
+nnoremap('<C-e>', '<cmd>:lua require(\'harpoon.ui\').toggle_quick_menu()<CR>')
 
-nnoremap("<leader>a", function() require("harpoon.mark").add_file() end, silent)
-nnoremap("<C-e>", function() require("harpoon.ui").toggle_quick_menu() end, silent)
+nnoremap('<leader>1', '<cmd>:lua require(\'harpoon.ui\').nav_file(1)<CR>')
+nnoremap('<leader>2', '<cmd>:lua require(\'harpoon.ui\').nav_file(2)<CR>')
+nnoremap('<leader>3', '<cmd>:lua require(\'harpoon.ui\').nav_file(3)<CR>')
+nnoremap('<leader>4', '<cmd>:lua require(\'harpoon.ui\').nav_file(4)<CR>')
 
-nnoremap("<leader>1", function() require("harpoon.ui").nav_file(1) end, silent)
-nnoremap("<leader>2", function() require("harpoon.ui").nav_file(2) end, silent)
-nnoremap("<leader>3", function() require("harpoon.ui").nav_file(3) end, silent)
-nnoremap("<leader>4", function() require("harpoon.ui").nav_file(4) end, silent)
+-- nnoremap('<C-e>', '<cmd>:Telescope harpoon marks<CR>')
