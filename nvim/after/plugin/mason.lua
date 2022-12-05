@@ -1,10 +1,10 @@
 -- Format on save
 
--- vim.api.nvim_create_autocmd('BufWritePre', {
---	callback = function()
---		vim.lsp.buf.format()
---	end,
--- })
+vim.api.nvim_create_autocmd('BufWritePre', {
+	pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+	command = 'silent! EslintFixAll',
+	group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+})
 
 local setup_mason_lspconfig = function()
 	local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
@@ -51,7 +51,7 @@ local setup_mason_lspconfig = function()
 			['emmet_ls'] = function()
 				lspconfig.emmet_ls.setup({
 					capabilities = capabilities,
-					filetypes = { 'html', 'css', 'eruby' },
+					filetypes = { 'html', 'css', 'eruby', 'css', 'sass', 'scss', 'less', 'js', 'jsx', 'ts', 'tsx' },
 				})
 			end,
 			['eslint'] = function()
@@ -61,7 +61,7 @@ local setup_mason_lspconfig = function()
 						code_actions = {
 							enable = true,
 							apply_on_save = {
-								enable = false,
+								enable = true,
 								types = { 'problem' }, -- "directive", "problem", "suggestion", "layout"
 							},
 							disable_rule_comment = {
@@ -73,6 +73,17 @@ local setup_mason_lspconfig = function()
 							enable = true,
 							report_unused_disable_directives = false,
 							run_on = 'type', -- or `save`
+						},
+					},
+				})
+			end,
+			['cssls'] = function()
+				lspconfig.cssls.setup({
+					settings = {
+						css = {
+							lint = {
+								unknownAtRules = 'ignore',
+							},
 						},
 					},
 				})
@@ -94,8 +105,8 @@ local setup_mason_null_ls = function()
 					extra_args = { '--quote-style', 'ForceSingle' },
 				}))
 			end,
-			prettierd = function()
-				null_ls.register(null_ls.builtins.formatting.prettierd.with({
+			prettier = function()
+				null_ls.register(null_ls.builtins.formatting.prettier.with({
 					only_local = 'node_modules/.bin',
 				}))
 			end,

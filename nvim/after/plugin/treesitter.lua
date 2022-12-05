@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require('nvim-treesitter.configs').setup({
 	sync_install = false,
 	highlight = {
 		enable = true,
@@ -7,5 +7,8 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		disable = {},
 	},
-	ensure_installed = "all",
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
+	},
 })

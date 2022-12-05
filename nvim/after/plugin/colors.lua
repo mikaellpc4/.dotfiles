@@ -3,4 +3,5 @@ vim.cmd('set background=dark')
 vim.cmd('set termguicolors')
 vim.cmd('colorscheme palenight')
 
+
 require('colorizer').setup()

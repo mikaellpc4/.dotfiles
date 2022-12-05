@@ -7,3 +7,7 @@ inoremap("<C-s>", "<cmd>:w<CR>")
 
 -- Format text
 nnoremap("<leader>fa", ":lua vim.lsp.buf.format()<CR>")
+
+-- Comment Something
+
+

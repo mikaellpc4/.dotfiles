@@ -1,4 +1,5 @@
 vim.opt.guicursor = ''
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -9,16 +10,16 @@ vim.opt.expandtab = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.fs.normalize('~/src/neovim')
-
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
 vim.g.mapleader = ' '
 
-vim.cmd('set ff=unix')
-vim.cmd('set ffs=unix,dos')
+vim.opt.updatetime = 50
+
+vim.cmd('set ff=dos')
+vim.cmd('set ffs=dos,unix')
 
 vim.cmd('set shell=powershell.exe')
 vim.cmd('set shellxquote=')
