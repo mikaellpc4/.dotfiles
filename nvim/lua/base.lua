@@ -18,6 +18,8 @@ vim.g.mapleader = ' '
 
 vim.opt.updatetime = 50
 
+vim.cmd('set splitbelow')
+
 vim.cmd('set ff=dos')
 vim.cmd('set ffs=dos,unix')
 
