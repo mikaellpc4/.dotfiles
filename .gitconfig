@@ -1,3 +1,5 @@
 [user]
 	email = 60710335+mikaellpc4@users.noreply.github.com
 	name  = mikaellpc
+[credential]
+	helper = cache
