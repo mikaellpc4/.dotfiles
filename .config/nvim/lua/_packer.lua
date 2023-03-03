@@ -3,137 +3,137 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 
-
-
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use('wbthomason/packer.nvim')
+	-- Packer can manage itself
+	use('wbthomason/packer.nvim')
 
-  -- Common Utilities
-  use('nvim-lua/plenary.nvim')
-  use({ 'neoclide/coc.nvim', branch = 'release' })
+	-- Common Utilities
+	use('nvim-lua/plenary.nvim')
 
-  -- Visuals
-  use('drewtempelmeyer/palenight.vim')
-  use('mhartington/oceanic-next')
-  use('tribela/vim-transparent')
+	-- Tmux and window navigation
+	use('christoomey/vim-tmux-navigator')
+	use('szw/vim-maximizer')
 
-  use('nvim-lualine/lualine.nvim')
+	-- Visuals
+	use('drewtempelmeyer/palenight.vim')
+	use('mhartington/oceanic-next')
+	use('tribela/vim-transparent')
 
-  use('nvim-tree/nvim-web-devicons')
+	use('nvim-lualine/lualine.nvim')
 
-  use('DaikyXendo/nvim-material-icon')
+	use('nvim-tree/nvim-web-devicons')
 
-  use('nvim-treesitter/nvim-treesitter-context')
+	use('DaikyXendo/nvim-material-icon')
 
-  use('norcalli/nvim-colorizer.lua')
+	use('nvim-treesitter/nvim-treesitter-context')
 
-  -- IDE
+	use('norcalli/nvim-colorizer.lua')
 
-  -- Live Server
-  use('manzeloth/live-server')
+	-- IDE
 
-  --  Highlight and Indent
-  use('nvim-treesitter/nvim-treesitter')
+	-- Live Server
+	use('manzeloth/live-server')
 
-  use('jose-elias-alvarez/null-ls.nvim')
+	--  Highlight and Indent
+	use('nvim-treesitter/nvim-treesitter')
 
-  -- LSP
-  use({
-    'williamboman/mason.nvim',
-    'jay-babu/mason-null-ls.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-    'ray-x/lsp_signature.nvim',
-  })
+	use('jose-elias-alvarez/null-ls.nvim')
 
-  -- Java LSP
+	-- LSP
+	use({
+		'williamboman/mason.nvim',
+		'jay-babu/mason-null-ls.nvim',
+		'williamboman/mason-lspconfig.nvim',
+		'neovim/nvim-lspconfig',
+		'ray-x/lsp_signature.nvim',
+	})
 
-  -- use("use mfussenegger/nvim-jdtls")
+	-- Java LSP
 
-  -- Autocomplete
-  use({
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'yioneko/nvim-cmp',
-    'pedro757/emmet',
-  })
+	-- use("use mfussenegger/nvim-jdtls")
 
-  -- Autocomplete Visuals
-  use('onsails/lspkind.nvim')
+	-- Autocomplete
+	use({
+		'hrsh7th/cmp-nvim-lsp',
+		'hrsh7th/cmp-buffer',
+		'hrsh7th/cmp-path',
+		'hrsh7th/cmp-cmdline',
+		'yioneko/nvim-cmp',
+		'pedro757/emmet',
+	})
 
-  -- Lspsaga
-  use({
-    'glepnir/lspsaga.nvim',
-    branch = 'main',
-    config = function()
-      require('lspsaga').setup({})
-    end,
-  })
+	-- Autocomplete Visuals
+	use('onsails/lspkind.nvim')
 
-  -- Autocomplete Snip
-  use('L3MON4D3/LuaSnip')
-  use('saadparwaiz1/cmp_luasnip')
-  use('rafamadriz/friendly-snippets')
+	-- Lspsaga
+	use({
+		'glepnir/lspsaga.nvim',
+		branch = 'main',
+	})
 
-  -- AutoTag and AutoPair
-  use('windwp/nvim-ts-autotag')
-  use('windwp/nvim-autopairs')
+	-- Autocomplete Snip
+	use('L3MON4D3/LuaSnip')
+	use('saadparwaiz1/cmp_luasnip')
+	use('rafamadriz/friendly-snippets')
 
-  -- Telescope
-  use('nvim-telescope/telescope.nvim')
-  -- Dependence
-  use('BurntSushi/ripgrep')
+	-- AutoTag and AutoPair
+	use('windwp/nvim-ts-autotag')
+	use('windwp/nvim-autopairs')
 
-  -- TABS
+	-- Telescope
+	use('nvim-telescope/telescope.nvim')
+	-- Dependence
+	use('BurntSushi/ripgrep')
 
-  use('akinsho/bufferline.nvim')
+	-- TABS
 
-  -- File Navigation
+	use('akinsho/bufferline.nvim')
 
-  use('mikaellpc4/harpoon')
+	-- File Navigation
 
-  use('nvim-telescope/telescope-file-browser.nvim')
+	-- use('mikaellpc4/harpoon')
+	use('ThePrimeagen/harpoon')
 
-  -- GIT
+	use('nvim-telescope/telescope-file-browser.nvim')
+	use('nvim-telescope/telescope-media-files.nvim')
 
-  use('lewis6991/gitsigns.nvim')
-  use('tpope/vim-fugitive')
+	-- GIT
 
-  -- Terminal
+	use('lewis6991/gitsigns.nvim')
+	use('tpope/vim-fugitive')
 
-  use('akinsho/toggleterm.nvim')
+	-- Terminal
 
-  -- Useful
+	use('akinsho/toggleterm.nvim')
 
-  use('numToStr/Comment.nvim')
-  use('JoosepAlviste/nvim-ts-context-commentstring')
+	-- Useful
 
-  -- DAP
+	use('numToStr/Comment.nvim')
+	use('JoosepAlviste/nvim-ts-context-commentstring')
 
-  use({
-    'mfussenegger/nvim-dap',
-    opt = true,
-    module = { 'dap' },
-    requires = {
-      'theHamsta/nvim-dap-virtual-text',
-      'rcarriga/nvim-dap-ui',
-      'mfussenegger/nvim-dap-python',
-      'nvim-telescope/telescope-dap.nvim',
-      { 'leoluz/nvim-dap-go', module = 'dap-go' },
-      { 'jbyuki/one-small-step-for-vimkind', module = 'osv' },
-      { 'mxsdev/nvim-dap-vscode-js' },
-      {
-        'microsoft/vscode-js-debug',
-        opt = true,
-        run = 'npm install --legacy-peer-deps && npm run compile',
-      },
-    },
-    config = function()
-      require('config.dap').setup()
-    end,
-    disable = false,
-  })
+	-- DAP
+
+	use({
+		'mfussenegger/nvim-dap',
+		opt = true,
+		module = { 'dap' },
+		requires = {
+			'theHamsta/nvim-dap-virtual-text',
+			'rcarriga/nvim-dap-ui',
+			'mfussenegger/nvim-dap-python',
+			'nvim-telescope/telescope-dap.nvim',
+			{ 'leoluz/nvim-dap-go', module = 'dap-go' },
+			{ 'jbyuki/one-small-step-for-vimkind', module = 'osv' },
+			{ 'mxsdev/nvim-dap-vscode-js' },
+			{
+				'microsoft/vscode-js-debug',
+				opt = true,
+				run = 'npm install --legacy-peer-deps && npm run compile',
+			},
+		},
+		config = function()
+			require('config.dap').setup()
+		end,
+		disable = false,
+	})
 end)
