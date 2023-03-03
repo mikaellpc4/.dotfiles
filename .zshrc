@@ -70,7 +70,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -144,7 +147,7 @@ zinit light-mode for \
 # zi light-mode for @sindresorhus/pure
 zi light z-shell/F-Sy-H
 zi light marlonrichert/zsh-autocomplete
-zi light zsh-users/zsh-autosuggestions
+# zi light zsh-users/zsh-autosuggestions
 zi light starship/starship
 # zi light ajeetdsouza/zoxide
 
@@ -172,11 +175,16 @@ eval "$(starship init zsh)"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-# Npiperelay
-export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+alias explorer="/mnt/c/Windows/explorer.exe"
 
-ss -a | grep -q $SSH_AUTH_SOCK
-if [ $? -ne 0 ]; then
-    rm -f $SSH_AUTH_SOCK
-    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
-fi
+
+# NOT WORKIN
+# Npiperelay
+# export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+#
+# ss -a | grep -q $SSH_AUTH_SOCK
+# if [ $? -ne 0 ]; then
+#     rm -f $SSH_AUTH_SOCK
+#     (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+# fi
+. "$HOME/.cargo/env"

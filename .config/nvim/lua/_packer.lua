@@ -95,6 +95,9 @@ return require('packer').startup(function(use)
 	use('ThePrimeagen/harpoon')
 
 	use('nvim-telescope/telescope-file-browser.nvim')
+
+	-- Nvim view media
+	use('nvim-lua/popup.nvim')
 	use('nvim-telescope/telescope-media-files.nvim')
 
 	-- GIT

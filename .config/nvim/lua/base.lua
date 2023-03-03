@@ -20,10 +20,19 @@ vim.opt.updatetime = 50
 
 vim.cmd('set splitbelow')
 
+vim.opt.clipboard = 'unnamedplus'
+
+vim.api.nvim_create_user_command('Ex', function()
+	vim.cmd(':silent !explorer .')
+end, {})
+
+vim.cmd('set shell=zsh')
+
+-- vim.cmd('set')
+
 -- " vim.cmd('set ff=dos')
 -- " vim.cmd('set ffs=dos,unix')
 -- "
--- " vim.cmd('set shell=powershell.exe')
 -- " vim.cmd('set shellxquote=')
 -- " vim.cmd('let &shellcmdflag = \'-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command \'')
 -- " vim.cmd('let &shellquote   = \'\'')

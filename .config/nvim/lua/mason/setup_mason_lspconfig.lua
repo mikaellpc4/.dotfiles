@@ -97,6 +97,15 @@ local setup_mason_lspconfig = function(on_attach_lspsaga)
 					},
 				})
 			end,
+			['jdtls'] = function()
+				lspconfig.jdtls.setup({
+					on_attach = on_attach_lspsaga,
+					root_dir = function(fname)
+						return require('lspconfig').util.root_pattern('pom.xml', 'gradle.build', '.git')(fname)
+							or vim.fn.getcwd()
+					end,
+				})
+			end,
 		})
 	end
 end
