@@ -1,5 +1,9 @@
 [user]
 	email = 60710335+mikaellpc4@users.noreply.github.com
 	name  = mikaellpc
-[credential]
-	helper = manager
+[core]
+	autocrlf = input
+[init]
+	defaultBranch = main
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

@@ -1,7 +1,6 @@
-vim.cmd('set background=dark')
--- vim.cmd('colorscheme oceanicNext')
-vim.cmd('set termguicolors')
-vim.cmd('colorscheme palenight')
+function ColorMyPencils(color)
+  color = color or 'tokyonight'
+  vim.cmd.colorscheme(color)
+end
 
-
-require('colorizer').setup()
+ColorMyPencils()

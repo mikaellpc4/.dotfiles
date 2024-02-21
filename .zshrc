@@ -72,7 +72,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -102,15 +101,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# ZSH Auto Complet
-
-# pnpm
-export PNPM_HOME="/home/mikaellpc/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
-export nvim="$HOME/.config/nvim/"
 
 autoload -U promptinit; promptinit
 
@@ -143,40 +133,41 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# Zoxide Installer
+if [[ ! -f $HOME/.local/bin/zoxide ]]; then
+  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+fi
+
 # Zinit Plugins
 # zi light-mode for @sindresorhus/pure
-zi light z-shell/F-Sy-H
-zi light marlonrichert/zsh-autocomplete
-# zi light zsh-users/zsh-autosuggestions
-zi light starship/starship
-# zi light ajeetdsouza/zoxide
+zinit light-mode for \
+  z-shell/F-Sy-H \
+  marlonrichert/zsh-autocomplete \
+  zsh-users/zsh-autosuggestions \
+  wait lucid ajeetdsouza/zoxide
+
+# Starship prompt
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+# PNPM Auto Complet
+zinit ice lucid blockf atpull'zi creinstall -q .'
+zinit light baliestri/pnpm.plugin.zsh
 
 # EXA
 alias ll="exa -l -g --icons --git"
 alias llt="exa -1 --icons --tree --git-ignore"
 
-# PNPM Auto Complet
-zi ice lucid blockf atpull'zi creinstall -q .'
-zi light baliestri/pnpm.plugin.zsh
-
 alias v="nvim"
-export PATH="/home/mikaellpc/.local/bin:$PATH"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(zoxide init zsh)"
-
-# Starship prompt
-eval "$(starship init zsh)"
+alias docker-compose="sudo docker compose"
+alias docker="sudo docker"
+alias python="python3"
+alias a="php artisan"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-alias explorer="/mnt/c/Windows/explorer.exe"
-
 
 # NOT WORKIN
 # Npiperelay
@@ -188,3 +179,33 @@ alias explorer="/mnt/c/Windows/explorer.exe"
 #     (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 # fi
 . "$HOME/.cargo/env"
+
+# bun completions
+[ -s "/home/mikaellpc/.bun/_bun" ] && source "/home/mikaellpc/.bun/_bun"
+
+# ${HOME}/.local/bin/wsl-ssh-agent-relay start
+# export SSH_AUTH_SOCK=${HOME}/.ssh/wsl-ssh-agent.sock
+
+rm -f .ssh/agent.sock
+
+export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+
+#ss -a | grep -q $SSH_AUTH_SOCK
+#if [ $? -ne 0 ]; then
+#    rm -f $SSH_AUTH_SOCK
+#    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+#fi
+
+alias auth="setsid socat UNIX-LISTEN:/home/mikaellpc/.ssh/agent.sock,fork EXEC:'$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent',nofork &"
+
+export CC=clang
+export CFLAGS="-fsanitize=integer -fsanitize=undefined -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wshadow"
+export LDLIBS="-lcrypt -lcs50 -lm"
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+alias compact_memory="sudo bash -c 'echo 1 > /proc/sys/vm/compact_memory'"
+alias drop_caches='sudo bash -c "echo 1 > /proc/sys/vm/drop_caches"'
