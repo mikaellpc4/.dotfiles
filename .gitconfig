@@ -3,6 +3,7 @@
 	name  = mikaellpc
 [core]
 	autocrlf = input
+	editor = nvim
 [init]
 	defaultBranch = main
 [url "ssh://git@github.com/"]
