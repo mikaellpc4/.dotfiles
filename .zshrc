@@ -133,11 +133,6 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-# Zoxide Installer
-if [[ ! -f $HOME/.local/bin/zoxide ]]; then
-  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-fi
-
 # Zinit Plugins
 # zi light-mode for @sindresorhus/pure
 zinit light-mode for \
@@ -209,3 +204,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 alias compact_memory="sudo bash -c 'echo 1 > /proc/sys/vm/compact_memory'"
 alias drop_caches='sudo bash -c "echo 1 > /proc/sys/vm/drop_caches"'
+
+eval "$(zoxide init --cmd cd zsh)"
+
