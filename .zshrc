@@ -164,34 +164,10 @@ alias a="php artisan"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# NOT WORKIN
-# Npiperelay
-# export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
-#
-# ss -a | grep -q $SSH_AUTH_SOCK
-# if [ $? -ne 0 ]; then
-#     rm -f $SSH_AUTH_SOCK
-#     (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
-# fi
 . "$HOME/.cargo/env"
 
 # bun completions
 [ -s "/home/mikaellpc/.bun/_bun" ] && source "/home/mikaellpc/.bun/_bun"
-
-# ${HOME}/.local/bin/wsl-ssh-agent-relay start
-# export SSH_AUTH_SOCK=${HOME}/.ssh/wsl-ssh-agent.sock
-
-rm -f .ssh/agent.sock
-
-export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
-
-#ss -a | grep -q $SSH_AUTH_SOCK
-#if [ $? -ne 0 ]; then
-#    rm -f $SSH_AUTH_SOCK
-#    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
-#fi
-
-alias auth="setsid socat UNIX-LISTEN:/home/mikaellpc/.ssh/agent.sock,fork EXEC:'$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent',nofork &"
 
 export CC=clang
 export CFLAGS="-fsanitize=integer -fsanitize=undefined -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wshadow"
