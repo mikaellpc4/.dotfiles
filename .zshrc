@@ -168,9 +168,6 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-alias compact_memory="sudo bash -c 'echo 1 > /proc/sys/vm/compact_memory'"
-alias drop_caches='sudo bash -c "echo 1 > /proc/sys/vm/drop_caches"'
-
 eval "$(zoxide init --cmd cd zsh)"
 
 # WSL MEM CLEAR
@@ -194,3 +191,7 @@ alias python="python3"
 alias a="php artisan"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+path+=('/home/mikaellpc/.local/bin')
+
+export PATH
