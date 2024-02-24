@@ -151,16 +151,6 @@ zinit light starship/starship
 zinit ice lucid blockf atpull'zi creinstall -q .'
 zinit light baliestri/pnpm.plugin.zsh
 
-# EXA
-alias ll="exa -l -g --icons --git"
-alias llt="exa -1 --icons --tree --git-ignore"
-
-alias v="nvim"
-alias docker-compose="sudo docker compose"
-alias docker="sudo docker"
-alias python="python3"
-alias a="php artisan"
-
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
@@ -183,3 +173,24 @@ alias drop_caches='sudo bash -c "echo 1 > /proc/sys/vm/drop_caches"'
 
 eval "$(zoxide init --cmd cd zsh)"
 
+# WSL MEM CLEAR
+# alias compact_memory="sudo bash -c 'echo 1 > /proc/sys/vm/compact_memory'"
+# alias drop_caches='sudo bash -c "echo 1 > /proc/sys/vm/drop_caches"'
+
+alias ela="exa -l -g --group-directories-first --icons --git"
+alias elat="exa -1 --icons --tree --git-ignore"
+
+alias vim="nvim"
+alias t="tmux"
+alias tn="tmux new -s $1"
+alias p="pnpm"
+alias g="git"
+alias ga="git add"
+alias gs="git status -s"
+alias gc="(){git commit -m $1}"
+alias docker-compose="sudo docker compose"
+alias docker="sudo docker"
+alias python="python3"
+alias a="php artisan"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
