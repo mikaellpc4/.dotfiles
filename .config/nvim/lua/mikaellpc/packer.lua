@@ -50,6 +50,8 @@ return require("packer").startup(function(use)
     }
   }
 
+  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+
   use {
     "creativenull/efmls-configs-nvim",
     tag = "v1.*", -- tag is optional, but recommended
@@ -85,4 +87,12 @@ return require("packer").startup(function(use)
     -- or                            , branch = "0.1.x",
     requires = { { "nvim-lua/plenary.nvim" } }
   }
+
+  use {
+    "dhruvasagar/vim-prosession",
+    requires = {
+      "tpope/vim-obsession",
+    },
+  }
+
 end)
