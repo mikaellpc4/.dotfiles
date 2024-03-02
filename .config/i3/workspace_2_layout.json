@@ -1,0 +1,50 @@
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1078,
+       "width": 1918,
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "name": "Executar script ao inicializar o Linux (Ubuntu) – Raccoon Ninja — Mozilla Firefox",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^firefox$",
+       "instance": "^Navigator$",
+       "machine": "^pop\\-os$",
+       "title": "^Executar\\ script\\ ao\\ inicializar\\ o\\ Linux\\ \\(Ubuntu\\)\\ \\–\\ Raccoon\\ Ninja\\ \\—\\ Mozilla\\ Firefox$",
+       "window_role": "^browser$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1070,
+       "width": 950,
+       "x": 0,
+       "y": 0
+    },
+    "marks": [
+       "_i3_restore_focus"
+    ],
+    "name": "./i3-save",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^kitty$",
+       "instance": "^kitty$",
+       "machine": "^pop\\-os$",
+       "title": "^\\.\\/i3\\-save$"
+       }
+    ],
+    "type": "con"
+}

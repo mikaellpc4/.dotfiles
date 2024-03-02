@@ -1,0 +1,227 @@
+;/* vim: set filetype=ini : */
+
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;==========================================================
+
+[colors]
+background = #1f1f28
+background-alt = #44475A
+foreground = #F8F8F2
+primary = #BD93F9
+secondary = #FF79C6
+alert = #FF5555
+disabled = #44475A
+
+;==========================================================
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+# [module/arch]
+# type = custom/text
+# format = "󰣇"
+
+[bar/main]
+monitor = eDP-1
+width = 100%
+height = 30pt
+radius = 3
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0pt
+
+border-size = 0
+border-bottom-size = 0pt
+
+padding-left = 2
+padding-right = 2
+module-margin = 2
+
+separator = |
+separator-foreground = ${colors.disabled}
+
+font-0 = NotoSans Nerd Font:size=11;2 
+
+modules-left = date temperature mode
+modules-center = xworkspaces
+modules-right = wlan battery pulseaudio 
+
+cursor-click = pointer
+
+enable-ipc = true
+
+;==========================================================
+
+[module/temperature]
+type = custom/script
+exec = /home/mikaellpc/.config/polybar/scripts/cpu-temperature.sh
+interval = 1
+
+;==========================================================
+
+[module/mode]
+type = custom/script
+exec = /home/mikaellpc/.config/polybar/scripts/uppercase.py
+interval = 0
+
+;==========================================================
+
+[bar/hdmi]
+monitor = eDPI-1
+width = 100%
+height = 24pt
+radius = 3
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0pt
+
+padding-left = 2
+padding-right = 2
+
+module-margin = 2
+
+separator = |
+separator-foreground = ${colors.disabled}
+
+font-0 = Ubuntu Nerd Font:size=11;2
+
+modules-center = xworkspaces
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+;==========================================================
+
+[module/systray]
+type = internal/tray
+
+format-margin = 8pt
+tray-spacing = 16pt
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %icon%
+label-active-foreground = ${colors.primary}
+label-active-padding = 1
+
+label-occupied = %icon%
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 1
+
+icon-default = 󰊠
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+
+;==========================================================
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+
+label-muted = "󰖁"
+label-muted-foreground = #666
+
+ramp-volume-0 = "󰕿"
+ramp-volume-1 = "󰖀"
+ramp-volume-2 = "󰕾"
+
+;==========================================================
+
+[network-base]
+type = internal/network
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = 󰤮 
+format-packetloss = <animation-packetloss> <label-connected>
+
+ramp-signal-0 = 󰤟
+ramp-signal-1 = 󰤟
+ramp-signal-2 = 󰤢
+ramp-signal-3 = 󰤥
+ramp-signal-4 = 󰤨
+ramp-signal-5 = 󰤨
+
+[module/wlan]
+inherit = network-base
+interface = wlp0s20f3
+interface-type = wireless
+label-connected = %essid% | %local_ip%
+
+[module/eth]
+inherit = network-base
+interface-type = wired
+label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
+
+;==========================================================
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %H:%M
+date-alt = %Y-%m-%d %H:%M:%S
+
+label = %date%
+label-foreground = ${colors.primary}
+
+;==========================================================
+
+[module/battery]
+type = internal/battery
+
+battery = BAT1
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+ramp-capacity-0 = " " 
+ramp-capacity-1 = " " 
+ramp-capacity-2 = " " 
+ramp-capacity-3 = " " 
+ramp-capacity-4 = " " 
+
+animation-charging-0 = " " 
+animation-charging-1 = " " 
+animation-charging-2 = " " 
+animation-charging-3 = " " 
+animation-charging-4 = " " 
+animation-charging-framerate = 750
+
+animation-discharging-0 = " " 
+animation-discharging-1 = " " 
+animation-discharging-2 = " " 
+animation-discharging-3 = " " 
+animation-discharging-4 = " " 
+animation-discharging-framerate = 500
+
+;==========================================================
+

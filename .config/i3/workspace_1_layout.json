@@ -1,0 +1,23 @@
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1078,
+       "width": 1918,
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "name": "sudo nvim /etc/fstab",
+    "percent": 1,
+    "swallows": [
+       {
+       "class": "^kitty$",
+       "instance": "^kitty$",
+       "machine": "^pop\\-os$",
+       "title": "^sudo\\ nvim\\ \\/etc\\/fstab$"
+       }
+    ],
+    "type": "con"
+}

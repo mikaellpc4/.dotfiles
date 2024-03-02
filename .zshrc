@@ -189,9 +189,18 @@ alias docker-compose="sudo docker compose"
 alias docker="sudo docker"
 alias python="python3"
 alias a="php artisan"
+alias 2G="sudo nmcli dev wifi connect Pinheiro-Oi-2G"
+alias 5G="sudo nmcli dev wifi connect Pinheiro-Oi-5G"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+path+=('/usr/local/go/bin')
 path+=('/home/mikaellpc/.local/bin')
 
 export PATH
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
