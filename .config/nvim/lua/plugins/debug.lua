@@ -23,7 +23,7 @@ return {
   {
     "theHamsta/nvim-dap-virtual-text",
     config = function()
-      require("nvim-dap-virtual-text").setup()
+      require("nvim-dap-virtual-text").setup({})
     end
   },
   { "jay-babu/mason-nvim-dap.nvim" },

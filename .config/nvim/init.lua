@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 require("mikaellpc.lazy")
 require("mikaellpc.remap")
@@ -31,6 +32,10 @@ vim.opt.updatetime = 50
 
 vim.wo.wrap = false
 
+-- Better Netrw
+vim.g.netrw_banner = 0   -- Hide banner
+-- vim.g.netrw_liststyle = 3 -- Tree-style view
+
 vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#c53e3e', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
@@ -49,3 +54,10 @@ vim.fn.sign_define('DapBreakpointRejected',
 vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})

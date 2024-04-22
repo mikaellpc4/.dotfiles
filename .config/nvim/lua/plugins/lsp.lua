@@ -1,25 +1,19 @@
 return {
   -- LSP
   {
-    "tzachar/cmp-tabnine",
-    build = "./install.sh",
-    dependencies = "hrsh7th/nvim-cmp",
-  },
-  {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
     dependencies = {
-      { "neovim/nvim-lspconfig" },          -- Required
-      { "mfussenegger/nvim-jdtls" },        -- Optional
-      { "williamboman/mason.nvim" },        -- Optional
+      { "neovim/nvim-lspconfig" },             -- Required
+      { "mfussenegger/nvim-jdtls" },           -- Optional
+      { "williamboman/mason.nvim" },           -- Optional
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
-      { "hrsh7th/nvim-cmp" },               -- Required
-      { "hrsh7th/cmp-nvim-lsp" },           -- Required
-      { "hrsh7th/cmp-path" },               -- Optional
-      { "L3MON4D3/LuaSnip" },               -- Required
-      { "saadparwaiz1/cmp_luasnip" },       -- Optional
-      { "rafamadriz/friendly-snippets" },   -- Optional
-      { "creativenull/efmls-configs-nvim" },
+      { "hrsh7th/nvim-cmp" },                  -- Required
+      { "hrsh7th/cmp-nvim-lsp" },              -- Required
+      { "hrsh7th/cmp-path" },                  -- Optional
+      { "L3MON4D3/LuaSnip" },                  -- Required
+      { "saadparwaiz1/cmp_luasnip" },          -- Optional
+      { "rafamadriz/friendly-snippets" }       -- Optional
     },
     config = function()
       local lsp_zero = require("lsp-zero")
@@ -70,6 +64,9 @@ return {
       local luasnip = require("luasnip")
 
       cmp.setup({
+        experimental = {
+          ghost_text = true,
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -91,10 +88,10 @@ return {
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
         }),
         sources = {
+          -- { name = "codeium" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
-          { name = "cmp_tabnine" },
           { name = "path" },
         },
       })
@@ -103,42 +100,26 @@ return {
         sign_icons = {},
       })
 
-      lspconfig.efm.setup({
-        init_options = {
-          documentFormatting = true,
-          documentRangeFormatting = true,
-          hover = true,
-          documentSymbol = true,
-          codeAction = true,
-          completion = true,
-        },
-        settings = {
-          rootMarkers = { ".git/" },
-        },
-        filetypes = { "python", "cpp", "lua", "html" },
-      })
-
-      local languages = require("efmls-configs.defaults").languages()
-
-      local efmls_config = {
-        filetypes = vim.tbl_keys(languages),
-        settings = {
-          rootMarkers = { ".git/" },
-          languages = languages,
-        },
-        init_options = {
-          documentFormatting = true,
-          documentRangeFormatting = true,
-        },
-      }
-
-      require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {}))
-
-      lspconfig.html.setup({
-        on_attach = function(client)
-          client.server_capabilities.documentFormattingProvider = false
-        end,
-      })
+      -- lspconfig.efm.setup({
+      --   init_options = {
+      --     documentFormatting = true,
+      --     documentRangeFormatting = true,
+      --     hover = true,
+      --     documentSymbol = true,
+      --     codeAction = true,
+      --     completion = true,
+      --   },
+      --   settings = {
+      --     rootMarkers = { ".git/" },
+      --   },
+      --   filetypes = { "python", "cpp", "lua", "html" },
+      -- })
+      --
+      -- lspconfig.html.setup({
+      --   on_attach = function(client)
+      --     client.server_capabilities.documentFormattingProvider = false
+      --   end,
+      -- })
 
       lspconfig.cssls.setup({
         settings = {
@@ -166,10 +147,23 @@ return {
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = { "vim" },
+            runtime = { version = 'LuaJIT' },
+            workspace = {
+              checkThirdParty = false,
+              -- Tells lua_ls where to find all the Lua files that you have loaded
+              -- for your neovim configuration.
+              library = {
+                '${3rd}/luv/library',
+                unpack(vim.api.nvim_get_runtime_file('', true)),
+              },
+              -- If lua_ls is really slow on your computer, you can try this instead:
+              -- library = { vim.env.VIMRUNTIME },
             },
+            completion = {
+              callSnippet = 'Replace',
+            },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
       })
@@ -182,7 +176,21 @@ return {
 
       require("mason").setup({})
       require("mason-lspconfig").setup({
-        ensure_installed = { "jdtls" },
+        ensure_installed = {
+          "jdtls",
+          "prisma-languague-server",
+          "gopls",
+          "golangci_lint_ls",
+          "codelldb",
+          "delve",
+          "eslint",
+          "eslint_d",
+          "go-debug-adapter",
+          "intelephense",
+          "lua_ls",
+          "tailwindcss",
+          "tsserver"
+        },
         handlers = {
           lsp_zero.default_setup,
           jdtls = function() end,
