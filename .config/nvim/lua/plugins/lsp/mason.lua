@@ -3,8 +3,8 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/nvim-cmp"
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/nvim-cmp",
 	},
 	config = function()
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -23,7 +23,29 @@ return {
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			-- tsserver = {},
 			--
+			--
+			cssls = {
+				settings = {
+					css = { validate = true, lint = {
+						unknownAtRules = "ignore",
+					} },
+					scss = { validate = true, lint = {
+						unknownAtRules = "ignore",
+					} },
+					less = { validate = true, lint = {
+						unknownAtRules = "ignore",
+					} },
+				},
+			},
 
+			eslint = {
+				settings = {
+					useFlatConfig = false, -- set if using flat config
+					experimental = {
+						useFlatConfig = nil, -- option not in the latest eslint-lsp
+					},
+				},
+			},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
