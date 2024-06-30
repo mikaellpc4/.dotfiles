@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 require("mikaellpc.lazy")
-require("mikaellpc.remap")
+require("mikaellpc.keymaps")
 
 vim.opt.nu = true
 vim.opt.relativenumber = true

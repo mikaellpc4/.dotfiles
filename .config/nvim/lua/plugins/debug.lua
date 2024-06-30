@@ -34,28 +34,6 @@ return {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-
-      local persistentbreakpoint = require('persistent-breakpoints.api')
-
-      vim.keymap.set('n', '<leader>dt', function()
-        dapui.toggle()
-      end)
-
-      vim.keymap.set('n', '<leader>db', function()
-        persistentbreakpoint.toggle_breakpoint()
-      end)
-
-      vim.keymap.set('n', '<leader>dc', function()
-        dap.continue()
-      end)
-
-      vim.keymap.set('n', '<leader>dr', function()
-        dapui.open({ reset = true })
-      end)
-
-      vim.keymap.set('n', '<C-s>', function()
-        dap.step_into()
-      end)
     end
   }
 }
