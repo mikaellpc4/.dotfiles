@@ -12,8 +12,8 @@ local map = function(keys, func, desc)
 	vim.keymap.set({ "n", "v" }, keys, func, { desc = desc })
 end
 
--- Personal
-nmap("<leader>pv", vim.cmd.Ex, "[E]x command prompt")
+nmap("-", "<cmd>Oil<CR>", "Open Oil")
+nmap("<leader>-", require("oil").toggle_float, "Open Oil floating on parent")
 
 vmap("J", ":m '>+1<CR>gv=gv", "Move selected lines down")
 vmap("K", ":m '<-2<CR>gv=gv", "Move selected lines up")
@@ -52,7 +52,7 @@ nmap("<leader>ss", builtin.builtin, "[S]earch [S]elect Telescope")
 nmap("<leader>sw", builtin.grep_string, "[S]earch current [W]ord")
 nmap("<leader>sg", builtin.live_grep, "[S]earch by [G]rep")
 nmap("<leader>sd", builtin.diagnostics, "[S]earch [D]iagnostics")
--- nmap("<leader>sr", builtin.resume, "[S]earch [R]esume")
+nmap("<leader>sR", builtin.resume, "[S]earch [R]esume")
 nmap("<leader>s.", builtin.oldfiles, "[S]earch Recent Files ('.' for repeat)")
 nmap("<leader><leader>", builtin.buffers, "[ ] Find existing buffers")
 
