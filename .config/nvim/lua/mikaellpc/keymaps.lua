@@ -114,3 +114,8 @@ nmap("<leader>l", lint.try_lint, "[L]inting for current file")
 
 -- Undotree
 nmap("<leader>u", vim.cmd.UndotreeToggle, "[U]ndo tree toggle")
+
+-- LSP
+
+nmap("]d", vim.diagnostic.goto_next, "Goto Next [D]iagnostics")
+nmap("[d", vim.diagnostic.goto_prev, "Goto Prev [D]iagnostics")

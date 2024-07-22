@@ -46,6 +46,7 @@ return {
 					},
 				},
 			},
+
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
@@ -59,6 +60,19 @@ return {
 						-- diagnostics = { disable = { 'missing-fields' } },
 					},
 				},
+			},
+
+			intelephense = {
+				settings = {
+					integerty = {
+						telemetry = { enable = false },
+					},
+				},
+				-- Disable formatting capability
+				on_attach = function(client, bufnr)
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end,
 			},
 		}
 
