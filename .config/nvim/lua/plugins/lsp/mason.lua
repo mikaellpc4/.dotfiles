@@ -61,8 +61,12 @@ return {
 					},
 				},
 			},
-
-			intelephense = {
+			-- psalm = {
+			-- 	on_attach = function(client)
+			-- 		client.resolved_capabilities.hoverProvider = false
+			-- 	end,
+			-- },
+			--[[ intelephense = {
 				settings = {
 					integerty = {
 						telemetry = { enable = false },
@@ -70,10 +74,11 @@ return {
 				},
 				-- Disable formatting capability
 				on_attach = function(client, bufnr)
+					client.resolved_capabilities.hover = false
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
-			},
+			}, ]]
 		}
 
 		require("mason").setup()

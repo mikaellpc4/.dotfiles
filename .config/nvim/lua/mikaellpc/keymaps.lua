@@ -1,15 +1,15 @@
 vim.g.mapleader = " "
 
 local nmap = function(keys, func, desc)
-	vim.keymap.set("n", keys, func, { desc = desc })
+  vim.keymap.set("n", keys, func, { desc = desc })
 end
 
 local vmap = function(keys, func, desc)
-	vim.keymap.set("v", keys, func, { desc = desc })
+  vim.keymap.set("v", keys, func, { desc = desc })
 end
 
 local map = function(keys, func, desc)
-	vim.keymap.set({ "n", "v" }, keys, func, { desc = desc })
+  vim.keymap.set({ "n", "v" }, keys, func, { desc = desc })
 end
 
 nmap("-", "<cmd>Oil<CR>", "Open Oil")
@@ -58,24 +58,24 @@ nmap("<leader><leader>", builtin.buffers, "[ ] Find existing buffers")
 
 -- Slightly advanced example of overriding default behavior and theme
 nmap("<leader>/", function()
-	-- You can pass additional configuration to Telescope to change the theme, layout, etc.
-	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
+  -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+  builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+    winblend = 10,
+    previewer = false,
+  }))
 end, "[/] Fuzzily search in current buffer")
 
 -- It's also possible to pass additional configuration options.
 --  See `:help telescope.builtin.live_grep()` for information about particular keys
 nmap("<leader>s/", function()
-	builtin.live_grep({
-		grep_open_files = true,
-		prompt_title = "Live Grep in Open Files",
-	})
+  builtin.live_grep({
+    grep_open_files = true,
+    prompt_title = "Live Grep in Open Files",
+  })
 end, "[S]earch [/] in Open Files")
 
 nmap("<leader>sn", function()
-	builtin.find_files({ cwd = vim.fn.stdpath("config") })
+  builtin.find_files({ cwd = vim.fn.stdpath("config") })
 end, "[S]earch [N]eovim files")
 
 -- Debug dap & dapui
@@ -87,20 +87,9 @@ nmap("<leader>dt", dapui.toggle, "[D]ebug [T]oggle UI")
 nmap("<leader>db", persistentbreakpoint.toggle_breakpoint, "[D]ebug [B]reakpoint")
 nmap("<leader>dc", dap.continue, "[D]ebug [C]ontinue")
 nmap("<leader>dr", function()
-	dapui.open({ reset = true })
+  dapui.open({ reset = true })
 end, "[D]ebug [R]eset and open UI")
 nmap("<C-s>", dap.step_into, "Step [I]nto in debug mode")
-
--- Conform
-local conform = require("conform")
-
-map("<leader>f", function()
-	conform.format({
-		lsp_fallback = true,
-		async = false,
-		timeout_ms = 500,
-	})
-end, "[F]ormat file or range (in visual mode)")
 
 -- Fugitive
 nmap("gs", "<cmd>G<CR>", "[G]it [S]tatus")
@@ -108,9 +97,9 @@ nmap("ga", "<cmd>diffget //2<CR>", "[G]et diff from left side")
 nmap("gl", "<cmd>diffget //3<CR>", "[G]et diff from right side")
 
 -- Nvim lint
-local lint = require("lint")
+-- local lint = require("lint")
 
-nmap("<leader>l", lint.try_lint, "[L]inting for current file")
+-- nmap("<leader>l", lint.try_lint, "[L]inting for current file")
 
 -- Undotree
 nmap("<leader>u", vim.cmd.UndotreeToggle, "[U]ndo tree toggle")
@@ -119,3 +108,4 @@ nmap("<leader>u", vim.cmd.UndotreeToggle, "[U]ndo tree toggle")
 
 nmap("]d", vim.diagnostic.goto_next, "Goto Next [D]iagnostics")
 nmap("[d", vim.diagnostic.goto_prev, "Goto Prev [D]iagnostics")
+nmap("<leader>f", vim.lsp.buf.format, {})

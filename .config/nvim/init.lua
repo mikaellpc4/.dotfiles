@@ -32,14 +32,6 @@ vim.opt.updatetime = 50
 
 vim.wo.wrap = false
 
--- Better Netrw
-vim.g.netrw_banner = 0 -- Hide banner
-vim.g.netrw_keepdir = 0 -- Keep the current directory and the browsing directory synced. This helps you avoid the move files error.
-vim.g.netrw_winsize = 30 -- Change the size of the Netrw window when it creates a split to 30%.
-vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+' -- Hide dotfiles
-vim.g.netrw_localcopydircmd = 'cp -r' -- Change the copy command. Mostly to enable recursive copy of directories.
--- vim.g.netrw_liststyle = 3 -- Tree-style view
-
 vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#c53e3e", bg = "#31353f" })
 vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
 vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
