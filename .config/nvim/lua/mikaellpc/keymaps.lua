@@ -1,15 +1,15 @@
 vim.g.mapleader = " "
 
 local nmap = function(keys, func, desc)
-  vim.keymap.set("n", keys, func, { desc = desc })
+	vim.keymap.set("n", keys, func, { desc = desc })
 end
 
 local vmap = function(keys, func, desc)
-  vim.keymap.set("v", keys, func, { desc = desc })
+	vim.keymap.set("v", keys, func, { desc = desc })
 end
 
 local map = function(keys, func, desc)
-  vim.keymap.set({ "n", "v" }, keys, func, { desc = desc })
+	vim.keymap.set({ "n", "v" }, keys, func, { desc = desc })
 end
 
 nmap("-", "<cmd>Oil<CR>", "Open Oil")
@@ -48,6 +48,13 @@ local builtin = require("telescope.builtin")
 nmap("<leader>sh", builtin.help_tags, "[S]earch [H]elp")
 nmap("<leader>sk", builtin.keymaps, "[S]earch [K]eymaps")
 nmap("<leader>sf", builtin.find_files, "[S]earch [F]iles")
+nmap("<leader>sF", function()
+	builtin.find_files({
+		hidden = true,
+		no_ignore = true,
+		-- follow = true,
+	})
+end, "[S]earch [F]iles")
 nmap("<leader>ss", builtin.builtin, "[S]earch [S]elect Telescope")
 nmap("<leader>sw", builtin.grep_string, "[S]earch current [W]ord")
 nmap("<leader>sg", builtin.live_grep, "[S]earch by [G]rep")
@@ -58,24 +65,24 @@ nmap("<leader><leader>", builtin.buffers, "[ ] Find existing buffers")
 
 -- Slightly advanced example of overriding default behavior and theme
 nmap("<leader>/", function()
-  -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-  builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-    winblend = 10,
-    previewer = false,
-  }))
+	-- You can pass additional configuration to Telescope to change the theme, layout, etc.
+	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+		winblend = 10,
+		previewer = false,
+	}))
 end, "[/] Fuzzily search in current buffer")
 
 -- It's also possible to pass additional configuration options.
 --  See `:help telescope.builtin.live_grep()` for information about particular keys
 nmap("<leader>s/", function()
-  builtin.live_grep({
-    grep_open_files = true,
-    prompt_title = "Live Grep in Open Files",
-  })
+	builtin.live_grep({
+		grep_open_files = true,
+		prompt_title = "Live Grep in Open Files",
+	})
 end, "[S]earch [/] in Open Files")
 
 nmap("<leader>sn", function()
-  builtin.find_files({ cwd = vim.fn.stdpath("config") })
+	builtin.find_files({ cwd = vim.fn.stdpath("config") })
 end, "[S]earch [N]eovim files")
 
 -- Debug dap & dapui
@@ -87,7 +94,7 @@ nmap("<leader>dt", dapui.toggle, "[D]ebug [T]oggle UI")
 nmap("<leader>db", persistentbreakpoint.toggle_breakpoint, "[D]ebug [B]reakpoint")
 nmap("<leader>dc", dap.continue, "[D]ebug [C]ontinue")
 nmap("<leader>dr", function()
-  dapui.open({ reset = true })
+	dapui.open({ reset = true })
 end, "[D]ebug [R]eset and open UI")
 nmap("<C-s>", dap.step_into, "Step [I]nto in debug mode")
 
@@ -108,4 +115,4 @@ nmap("<leader>u", vim.cmd.UndotreeToggle, "[U]ndo tree toggle")
 
 nmap("]d", vim.diagnostic.goto_next, "Goto Next [D]iagnostics")
 nmap("[d", vim.diagnostic.goto_prev, "Goto Prev [D]iagnostics")
-nmap("<leader>f", vim.lsp.buf.format, {})
+nmap("<leader>f", vim.lsp.buf.format, "Format Text")

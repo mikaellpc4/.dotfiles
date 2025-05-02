@@ -26,15 +26,24 @@ return {
 			--
 			cssls = {
 				settings = {
-					css = { validate = true, lint = {
-						unknownAtRules = "ignore",
-					} },
-					scss = { validate = true, lint = {
-						unknownAtRules = "ignore",
-					} },
-					less = { validate = true, lint = {
-						unknownAtRules = "ignore",
-					} },
+					css = {
+						validate = true,
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
+					scss = {
+						validate = true,
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
+					less = {
+						validate = true,
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
 				},
 			},
 
@@ -79,6 +88,10 @@ return {
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
 			}, ]]
+			bashls = {
+				filetypes = { "sh", "bash", "zsh", "make" }, -- Ensure Makefile support
+				root_dir = require("lspconfig").util.root_pattern(".git", "Makefile"), -- Detect project root
+			},
 		}
 
 		require("mason").setup()
