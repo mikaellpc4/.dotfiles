@@ -37,29 +37,50 @@ vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#3135
 vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
 
 vim.fn.sign_define("DapBreakpoint", {
-	text = "",
-	texthl = "DapBreakpoint",
-	linehl = "DapBreakpoint",
-	numhl = "DapBreakpoint",
+  text = "",
+  texthl = "DapBreakpoint",
+  linehl = "DapBreakpoint",
+  numhl = "DapBreakpoint",
 })
 vim.fn.sign_define(
-	"DapBreakpointCondition",
-	{ text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+  "DapBreakpointCondition",
+  { text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 )
 vim.fn.sign_define(
-	"DapBreakpointRejected",
-	{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+  "DapBreakpointRejected",
+  { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 )
 vim.fn.sign_define(
-	"DapLogPoint",
-	{ text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+  "DapLogPoint",
+  { text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
 )
 vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking text",
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
+
+vim.api.nvim_create_user_command("GremoveConflictMarkers", function(opts)
+  local start_line = opts.line1
+  local end_line = opts.line2
+  local bufnr = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, end_line, false)
+
+  local filtered = {}
+  for _, line in ipairs(lines) do
+    if
+        not line:match("^<<<<<<<")
+        and not line:match("^|||||||")
+        and not line:match("^=======")
+        and not line:match("^>>>>>>>")
+    then
+      table.insert(filtered, line)
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(bufnr, start_line - 1, end_line, false, filtered)
+end, { range = true, desc = "Remove Git conflict markers" })

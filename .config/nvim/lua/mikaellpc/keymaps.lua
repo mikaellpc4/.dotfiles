@@ -103,6 +103,9 @@ nmap("gs", "<cmd>G<CR>", "[G]it [S]tatus")
 nmap("ga", "<cmd>diffget //2<CR>", "[G]et diff from left side")
 nmap("gl", "<cmd>diffget //3<CR>", "[G]et diff from right side")
 
+-- GitSigns
+nmap("gp", "<cmd>Gitsigns preview_hunk<CR>", "[G]it [P]review Hunk");
+
 -- Nvim lint
 -- local lint = require("lint")
 
