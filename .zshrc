@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="xiong-chiamiov-plus"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -157,17 +157,10 @@ esac
 zinit ice lucid blockf atpull'zi creinstall -q .'
 zinit light baliestri/pnpm.plugin.zsh
 
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-. "$HOME/.cargo/env"
-
 export CC=clang
 export CFLAGS="-fsanitize=integer -fsanitize=undefined -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wshadow"
 export LDLIBS="-lcrypt -lcs50 -lm"
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-
-eval "$(zoxide init --cmd cd zsh)"
 
 # WSL MEM CLEAR
 # alias compact_memory="sudo bash -c 'echo 1 > /proc/sys/vm/compact_memory'"
@@ -198,10 +191,6 @@ export PATH="$GOPATH/bin:$PATH"
 path+=('/usr/local/go/bin')
 path+=('/home/mikaellpc/.local/bin')
 
-export PATH
-
-. "$HOME/.asdf/asdf.sh"
-
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 
@@ -212,3 +201,6 @@ autoload -Uz compinit && compinit
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+eval "$(zoxide init --cmd cd zsh)"
