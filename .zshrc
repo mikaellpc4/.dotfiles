@@ -204,3 +204,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 eval "$(zoxide init --cmd cd zsh)"
+# >>> xmake >>>
+test -f "/home/mikaellpc/.xmake/profile" && source "/home/mikaellpc/.xmake/profile"
+# <<< xmake <<<

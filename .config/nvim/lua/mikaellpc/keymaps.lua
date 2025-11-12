@@ -29,7 +29,7 @@ map("<leader>p", [["_dP]], "[P]aste over current selection")
 map("<leader>y", [["+y]], "[Y]ank to system clipboard")
 nmap("<leader>Y", [["+Y]], "[Y]ank entire line to system clipboard")
 
-map("<leader>d", [["_d]], "[D]elete current line or selection")
+map("<leader>dd", [["_d]], "[D]elete current line or selection")
 
 nmap("Q", "<nop>", "Disable [Q]uick window key")
 -- nmap("<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -88,15 +88,24 @@ end, "[S]earch [N]eovim files")
 -- Debug dap & dapui
 local dap = require("dap")
 local dapui = require("dapui")
-local persistentbreakpoint = require("persistent-breakpoints.api")
+local pb = require("persistent-breakpoints.api")
 
 nmap("<leader>dt", dapui.toggle, "[D]ebug [T]oggle UI")
-nmap("<leader>db", persistentbreakpoint.toggle_breakpoint, "[D]ebug [B]reakpoint")
+nmap("<leader>do", dap.step_over, "[D]ebug Step [O]ver")
+nmap("<leader>di", dap.step_into, "[D]ebug Step [I]nto")
+nmap("<leader>du", dap.step_out, "[D]ebug Step O[U]t")
+nmap("<leader>db", pb.toggle_breakpoint, "[D]ebug [B]reakpoint")
+nmap("<leader>dB", function()
+	pb.set_conditional_breakpoint(vim.fn.input("Condition: "))
+end, "[D]ebug Conditional [B]reakpoint")
 nmap("<leader>dc", dap.continue, "[D]ebug [C]ontinue")
 nmap("<leader>dr", function()
 	dapui.open({ reset = true })
-end, "[D]ebug [R]eset and open UI")
-nmap("<C-s>", dap.step_into, "Step [I]nto in debug mode")
+end, "[D]ebug [R]eset UI")
+nmap("<leader>dR", dap.restart, "[D]ebug [R]estart")
+nmap("<leader>dq", dap.terminate, "[D]ebug [Q]uit / Terminate")
+nmap("<leader>de", dapui.eval, "[D]ebug [E]valuate expression")
+vmap("<leader>de", dapui.eval, "[D]ebug [E]valuate selection")
 
 -- Fugitive
 nmap("gs", "<cmd>G<CR>", "[G]it [S]tatus")
@@ -104,7 +113,7 @@ nmap("ga", "<cmd>diffget //2<CR>", "[G]et diff from left side")
 nmap("gl", "<cmd>diffget //3<CR>", "[G]et diff from right side")
 
 -- GitSigns
-nmap("gp", "<cmd>Gitsigns preview_hunk<CR>", "[G]it [P]review Hunk");
+nmap("gp", "<cmd>Gitsigns preview_hunk<CR>", "[G]it [P]review Hunk")
 
 -- Nvim lint
 -- local lint = require("lint")
